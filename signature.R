@@ -181,6 +181,7 @@ plot(pca$x[,1:2], asp=1, col='white',
 text(pca$x[,1:2], labels = tp, col = cc)
 
 
+write.csv(pca$rotation[,1:2], file='~/Desktop/pca_loadings.csv', quote=FALSE)
 
 
 
