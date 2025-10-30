@@ -1,0 +1,144 @@
+2024-10-01
+----------
+Anaar, Jeremy
+what are the main scientific questions for the datasets Jeremy is compiling?
+discuss available variables (metadata) in each
+
+first dataset: want patients with severe blunt trauma and NOT those with severe burns. 
+Take note of timepoint. 
+Some went on to have multiple organ failure: track that, if possible
+Exclude controls exposed to endotoxin, keep healthy controls
+
+second dataset: GSE40012
+want patients w/ bacterial pneumonia but without any form of virus (viral pneumonia, influenza, etc.)
+keep all timepoints, keep track
+plan for gender + age adjustment, but won't be first question
+
+third dataset: GSE20346
+include bacterial pneumonia (n=6?), note sample day (timepoint)
+exclude overlap with previous dataset
+exclude those with influenza and influenza vaccine recipients
+
+Main question: Do we see the signature (that we defined) in the groups of patients where we expect it (and not see it where we don't expect it)?
+
+4th dataset: GSE65682
+expect some patients to have signature (or not) based on source of infection
+exclude anybody with no source listed
+Jeremy: might not have source info
+
+5th dataset: GSE33341
+exclude mice
+this one is complicated
+want patients that "only had bacterimia", not "another source"
+find info on source of infection
+
+6th dataset: GSE60244
+keep those with bacterial pneumonia, exclude viral and viral+bacterial pneumonia
+include healthy controls
+
+Jeremy will send spreadsheet with variables, Anaar will annotate with which ones to keep
+Ping if no response by Monday
+
+
+
+2024-10-17
+----------
+One HC patient was not actually healthy (patient 9)
+How much effort would it be to exclude them / re-run analysis?
+Anaar has list of figures needed for paper
+
+
+
+2024-10-24
+----------
+"Flow chart of which genes to compare to SVS and MMP8:  Those that are different at the C timepoint compared to the A timepoint, because the MMP8 signature is not dynamic."
+Genes DE between A and C
+Genes have to be in same category (early, late, recovery, continuous)
+Give Jeremy the trauma data from Partek flow, get it together, do clustering
+
+
+2024-12-10
+----------
+keep cranking through list
+B/W versions of SC gene pattern plots (line and bar)
+MMP8 DE lists
+
+
+2024-12-17
+----------
+keep cranking through list
+MMP8 DE lists
+
+
+2025-01-07
+----------
+Jeremy analysis update, no big differences between mild and severe injury
+Anaar presenting to Cobb and Kushairy(?)
+encoded each patient during each time window as either 1 (didn't receive additional immune insult) or 2 (did)
+want to control for lactate (rather than injury severity score)
+color code PCA plot by bin in previous time window
+
+
+2025-01-14
+----------
+Justin Wang, medical student collecting samples
+
+
+2025-01-21
+----------
+Anaar just met with Dr. Cobb
+Jeremy's "delta PCA" plot doesn't show much
+Jeremy didn't find any DE genes at all in any timepoint
+Anaar went through R21 stuff
+
+
+2025-01-28
+----------
+Jeremy: new delta PCA plot w/averages
+doing DE by timepoint within bins -> nothing is significant
+
+
+2025-01-28
+----------
+Jeremy: random intercept model was overfitting, singular for ~25% of genes
+sticking with bin-specific 2 timepoint models
+Anaar preparing abstract
+ran DE in Excel: all samples in a timepoint vs (3) healthy controls
+pathways make biological sense
+want a line plot showing patterns - up, down, recovery
+can run clustering on gene dynamics (fold changes)
+Anaar will send count data soon
+
+
+2025-02-11
+----------
+updates from my figures showing gene expression patterns over time
+hard to compare timepoints to 3 healthy controls AND correct for lactate
+
+
+2025-09-02
+----------
+Anaar, James, Joseph Cuschieri, Perren Cobb
+overview of secondary analysis project
+practices may have changed since first paper ("Genomic Storm"), later timepoints may look different
+start by using "our list" of genes, see how samples separate by these genes
+start with just time 0 samples, see if we see signal of "pro-invasive" signature
+"normalize" all datasets from 0-100 (uniform), add zeros for missing genes, combine and cluster
+
+
+2025-09-23
+----------
+is it possible that some of the genes we call DE are very lowly expressed?
+to do: check the average CPM for DE genes
+
+
+2025-09-30
+----------
+Anaar, James
+Anaar has annotated version of James's PCA plot showing huge differences between platforms/experiments
+James has big table of how each dataset was normalized and if raw data available
+"genomic storm" still looks weirdly split
+need normalization for single-cell pseudobulk data
+
+
+
