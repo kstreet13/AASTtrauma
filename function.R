@@ -1,18 +1,24 @@
 require(topGO)
 
-de <- read.csv('data/genelists/metagen_two_datasets/meta_all_early.csv')
+de <- read.csv('data/GSEA lists 3-17-26 2/core genes all timepoints/DEG core_genes_all_timepoints.csv')
+univ <- read.csv('data/GSEA lists 3-17-26 2/core genes all timepoints/UNIVERSE core genes all timepoints.csv')
 
+addEntrezIDs <- function(df){
+    require(org.Hs.eg.db)
+    anno <- select(org.Hs.eg.db, keys=df$Gene, 
+                   columns="ENTREZID", keytype="SYMBOL")
+    names(anno) <- c('Gene','Entrez')
+    df <- merge(df, anno, all.x = TRUE)
+    df
+}
 
-require(org.Hs.eg.db)
-anno <- select(org.Hs.eg.db, keys=as.character(as.matrix(myGenes)), 
-               columns="ENTREZID", keytype="SYMBOL")
-names(anno) <- c('Gene','Entrez')
+de <- addEntrezIDs(de)
+univ <- addEntrezIDs(univ)
 
-de <- merge(de, anno, all.x = TRUE)
+#sig <- de$Entrez[which(de$meta_fdr < .05)]
 
-sig <- de$Entrez[which(de$meta_fdr < .05)]
-
-go <- goana(sig, universe = de$Entrez)
+require(limma)
+go <- goana(de$Entrez, universe = univ$Entrez)
 go <- go[order(go$P.DE), ]
 
 topTerms <- function(res, topn = 10, ...){
